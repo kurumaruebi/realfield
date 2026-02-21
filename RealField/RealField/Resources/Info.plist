@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- カメラ使用の説明（必須） -->
+    <key>NSCameraUsageDescription</key>
+    <string>空間をキャプチャするためにカメラを使用します。部屋の中で360度回転しながら写真を撮影します。</string>
+
+    <!-- モーションセンサー使用の説明 -->
+    <key>NSMotionUsageDescription</key>
+    <string>デバイスの向きを検出して、撮影ガイドと3Dビューアの視点操作に使用します。</string>
+
+    <!-- ネットワークアクセス -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>realfield.app</key>
+            <dict>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- サポートするインターフェース方向 -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+
+    <!-- Metal GPUを要求 -->
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>metal</string>
+        <string>arm64</string>
+    </array>
+</dict>
+</plist>

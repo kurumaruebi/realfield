@@ -1,0 +1,78 @@
+name: RealField
+options:
+  bundleIdPrefix: com.realfield
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: "YES"
+    DEVELOPMENT_TEAM: ""
+
+packages:
+  MetalSplatter:
+    url: https://github.com/scier/MetalSplatter
+    from: "1.0.0"
+
+targets:
+  RealField:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: RealField
+        excludes:
+          - "Preview Content"
+    resources:
+      - path: RealField/Resources/Assets.xcassets
+      - path: RealField/Preview Content
+    settings:
+      base:
+        INFOPLIST_FILE: RealField/Resources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.realfield.app
+        PRODUCT_NAME: RealField
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: RealField
+        INFOPLIST_KEY_NSCameraUsageDescription: "空間をキャプチャするためにカメラを使用します。"
+        INFOPLIST_KEY_NSMotionUsageDescription: "デバイスの向きを検出して撮影ガイドと3Dビューアに使用します。"
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        SWIFT_EMIT_LOC_STRINGS: YES
+        CODE_SIGN_STYLE: Automatic
+        MTL_ENABLE_DEBUG_INFO: INCLUDE_SOURCE
+        # MetalシェーダーのコンパイルにMetalのデフォルトライブラリを使用
+        MTL_FAST_MATH: YES
+    dependencies:
+      - package: MetalSplatter
+        product: MetalSplatter
+      - package: MetalSplatter
+        product: SplatIO
+      - package: MetalSplatter
+        product: PLYIO
+    preBuildScripts: []
+    postBuildScripts: []
+
+schemes:
+  RealField:
+    build:
+      targets:
+        RealField: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
